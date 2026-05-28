@@ -1,0 +1,17 @@
+package com.copilot.desafio_tecnico.repository;
+
+import com.copilot.desafio_tecnico.dto.TaskDTO;
+import com.copilot.desafio_tecnico.entity.Task;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface TaskRepository extends JpaRepository<Task, Long> {
+    @Query("select t from Task t")
+    List<TaskDTO> findEverything();
+
+    @Query("select t from Task t where id = :id")
+    TaskDTO findTaskById(Long id);
+}

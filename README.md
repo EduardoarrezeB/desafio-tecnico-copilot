@@ -1,5 +1,6 @@
 🧪 Teste Técnico — Backend Java Júnior
 📌 Contexto
+
 Você foi contratado para desenvolver uma API simples de gerenciamento de tarefas (To-Do List).
 A aplicação deve seguir boas práticas de backend, organização em camadas e uso de Spring Boot.
 
@@ -15,19 +16,19 @@ createdAt (LocalDateTime)
 
 ✅ Parte 2 — API REST
 Implemente os seguintes endpoints:
-🔹 Criar tarefa
+🔹 Criar tarefa\
 POST /tasks
 
-🔹 Listar todas tarefas
+🔹 Listar todas tarefas\
 GET /tasks
 
-🔹 Buscar tarefa por ID
+🔹 Buscar tarefa por ID\
 GET /tasks/{id}
 
-🔹 Atualizar tarefa
+🔹 Atualizar tarefa\
 PUT /tasks/{id}
 
-🔹 Deletar tarefa
+🔹 Deletar tarefa\
 DELETE /tasks/{id}
 
 
