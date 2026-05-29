@@ -32,7 +32,7 @@ public class TaskService {
         task.setDescription(novaTask.description());
         task.setTitle(novaTask.title());
 
-        if (task.getTitle().trim().equals("")) {
+        if (task.getTitle() == null || task.getTitle().isBlank()) {
             throw new RuntimeException("Título não pode vir vazio");
         }
 
@@ -40,18 +40,17 @@ public class TaskService {
     }
 
     public Task atualizaTask(Long id, TaskDTO dto) {
-        Task task = taskRepository.findById(id).orElseThrow(() -> new RuntimeException("Task não encontrada"));
+        Task task = taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException("Task não encontrada"));
 
         task.setTitle(dto.title());
         task.setDescription(dto.description());
-        task.setCreatedAt(LocalDateTime.now());
         task.setCompleted(dto.completed());
 
         return taskRepository.save(task);
     }
 
     public void deletaTask(Long id) {
-        Task task = taskRepository.findById(id).orElseThrow(() -> new RuntimeException("Task não encontrada"));
+        Task task = taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException("Task não encontrada"));
         taskRepository.delete(task);
     }
 }
