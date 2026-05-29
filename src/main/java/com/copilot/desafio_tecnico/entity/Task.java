@@ -32,4 +32,20 @@ public class Task {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Boolean getCompleted() {
+        return completed;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
 }
