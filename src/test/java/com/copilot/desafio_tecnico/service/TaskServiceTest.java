@@ -1,9 +1,9 @@
 package com.copilot.desafio_tecnico.service;
 
-import com.copilot.desafio_tecnico.dto.TaskDTO;
+import com.copilot.desafio_tecnico.dto.TaskDTOTest;
 import com.copilot.desafio_tecnico.entity.Task;
 import com.copilot.desafio_tecnico.handlers.TaskNotFoundException;
-import com.copilot.desafio_tecnico.repository.TaskRepository;
+import com.copilot.desafio_tecnico.repository.TaskRepositoryTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,20 +11,20 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class TaskService {
+public class TaskServiceTest {
     @Autowired
-    private TaskRepository taskRepository;
+    private TaskRepositoryTest taskRepository;
 
-    public List<TaskDTO> searchTasks(){
+    public List<TaskDTOTest> searchTasks(){
         return taskRepository.findEverything();
     }
 
-    public TaskDTO searchTaskById(Long id) {
+    public TaskDTOTest searchTaskById(Long id) {
         Task task = taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException("Task não encontrada"));
-        return new TaskDTO(task.getId(), task.getTitle(), task.getDescription(), task.getCompleted(), task.getCreatedAt());
+        return new TaskDTOTest(task.getTitle(), task.getDescription(), task.getCompleted(), task.getCreatedAt());
     }
 
-    public Task criarTarefa(TaskDTO novaTask) {
+    public Task criarTarefa(TaskDTOTest novaTask) {
         Task task = new Task();
 
         task.setCompleted(false);
@@ -39,16 +39,12 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
-    public Task atualizaTask(Long id, TaskDTO dto) {
+    public Task atualizaTask(Long id, TaskDTOTest dto) {
         Task task = taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException("Task não encontrada"));
 
-        if (dto.title() != null) {
-            task.setTitle(dto.title());
-        }
-        if (dto.description() != null) {
-            task.setDescription(dto.description());
-        }
-        task.setCompleted(false);
+        task.setTitle(dto.title());
+        task.setDescription(dto.description());
+        task.setCompleted(dto.completed());
 
         return taskRepository.save(task);
     }

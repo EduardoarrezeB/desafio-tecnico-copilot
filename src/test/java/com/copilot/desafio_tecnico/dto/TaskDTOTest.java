@@ -2,8 +2,7 @@ package com.copilot.desafio_tecnico.dto;
 
 import java.time.LocalDateTime;
 
-public record TaskDTO(
-        Long id,
+public record TaskDTOTest(
         String title,
         String description,
         Boolean completed,

@@ -48,4 +48,8 @@ public class Task {
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
+
+    public Long getId() {
+        return id;
+    }
 }
